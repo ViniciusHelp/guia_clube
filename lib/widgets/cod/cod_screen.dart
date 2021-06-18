@@ -100,7 +100,9 @@ class _CodScreenState extends State<CodScreen> {
                     UIHelper.verticalSpace(30),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/selfie_screen');
+                        },
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(displayHeight(context) * 0.4,
                                 displayWidth(context) * 0.15),
