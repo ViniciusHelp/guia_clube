@@ -21,7 +21,7 @@ final standardWidth = 375.0;
 final standardHeight = 815.0;
 
 /// late init
-double screenWidth;
+double screenWidth ;
 double screenHeight;
 double width;
 double height;
@@ -34,7 +34,7 @@ double realH(double height) {
 
 // scale [width] by [ standardWidth ]
 double realW(double width) {
-  assert(screenWidth != 0.0);
+  assert(screenWidth!= 0.0);
   return width / standardWidth * screenWidth;
 }
 

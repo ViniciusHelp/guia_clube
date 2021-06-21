@@ -16,6 +16,9 @@ class DataScreen extends StatefulWidget {
 
 class _DataScreenState extends State<DataScreen> {
   final TextEditingController phoneEditingController = TextEditingController();
+  final TextEditingController nameEditingController = TextEditingController();
+  final TextEditingController adressEditingController = TextEditingController();
+  final TextEditingController cpfEditingController = TextEditingController();
   var maskFormatter = new MaskTextInputFormatter(
       mask: '+55 ## #####-####', filter: {"#": RegExp(r'[0-9]')});
 
@@ -73,40 +76,82 @@ class _DataScreenState extends State<DataScreen> {
                           fontSize: displayWidth(context) * 0.11,
                           color: colorYellow),
                     ),
-                    UIHelper.verticalSpace(100),
+                    UIHelper.verticalSpace(40),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
-                        'Nome completo:',
-                        style: kPrimalStyle.copyWith(
-                            fontSize: displayWidth(context) * 0.07,
-                            color: colorPurple),
-                      ),
-                      Text(
-                        'Endereço:',
-                        style: kPrimalStyle.copyWith(
-                            fontSize: displayWidth(context) * 0.07,
-                            color: colorPurple),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: nameEditingController,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                hintText: "Nome:",
+                                labelText: "Nome:",
+                                labelStyle: kHintTextStyle.copyWith(
+                                    color: colorPurple,
+                                    fontSize: displayWidth(context) * 0.05),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: adressEditingController,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                hintText: "Endereço:",
+                                labelText: "Endereço:",
+                                labelStyle: kHintTextStyle.copyWith(
+                                    color: colorPurple,
+                                    fontSize: displayWidth(context) * 0.05),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: cpfEditingController,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                hintText: "CPF:",
+                                labelText: "CPF:",
+                                labelStyle: kHintTextStyle.copyWith(
+                                    color: colorPurple,
+                                    fontSize: displayWidth(context) * 0.05),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
+                        ),
                       ],
                     ),
-                    
-                    UIHelper.verticalSpace(50),
+                    UIHelper.verticalSpace(40),
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          //Navigator.pushNamed(context, '/cod_screen');
+                          Navigator.pushNamed(context, '/map_screen');
                         },
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(displayHeight(context) * 0.4,
                                 displayWidth(context) * 0.15),
                             primary: colorPurple),
-                        child: Text('Salvar e visualizar descontos',
+                        child: Text('Salvar e continuar',
                             style: kPrimalStyle.copyWith(
                                 fontSize: displayWidth(context) * 0.05)),
                       ),
                     ),
+                    UIHelper.verticalSpace(40),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text('Termos de serviço'),
+                          UIHelper.verticalSpace(5),
+                          Text('Politica de privacidade'),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

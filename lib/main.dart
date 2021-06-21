@@ -5,13 +5,14 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:guia_clube/widgets/cod/cod_screen.dart';
 import 'package:guia_clube/widgets/data/data_screen.dart';
 import 'package:guia_clube/widgets/login/login_screen.dart';
+import 'package:guia_clube/widgets/map/map_screen.dart';
 import 'package:guia_clube/widgets/phone/phone_screen.dart';
 import 'package:guia_clube/widgets/selfie/selfie_screen.dart';
 import 'package:guia_clube/widgets/splash/splash_screen.dart';
 
 void main() => runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/map_screen',
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
       
@@ -39,6 +40,10 @@ void main() => runApp(GetMaterialApp(
             GetPage(
             name: '/data_screen',
             page: () => DataScreen(),
+           ),
+           GetPage(
+            name: '/map_screen',
+            page: () => MapScreen(),
            ),
       ],
     ));
