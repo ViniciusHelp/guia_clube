@@ -8,5 +8,3 @@ const Color imgBG = Color.fromRGBO(230, 230, 254, 1);
 const Color colorRed = Color(0xFFFF00000);
 const Color primaryColor = Colors.indigo;
 
- double screenWidth;
-  double screenHeight;

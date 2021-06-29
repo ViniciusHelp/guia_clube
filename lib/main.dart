@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:guia_clube/widgets/cod/cod_screen.dart';
 import 'package:guia_clube/widgets/data/data_screen.dart';
+import 'package:guia_clube/widgets/login/loginFG_screen.dart';
 import 'package:guia_clube/widgets/login/login_screen.dart';
 import 'package:guia_clube/widgets/map/map_screen.dart';
 import 'package:guia_clube/widgets/phone/phone_screen.dart';
@@ -12,13 +13,13 @@ import 'package:guia_clube/widgets/splash/splash_screen.dart';
 
 void main() => runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/map_screen',
+      initialRoute: '/loginFC_screen',
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
       
       getPages: [
         GetPage(
-          name: "/",
+          name: "/splash_screen",
           page: () => SplashScreen(),
         ),
         GetPage(
@@ -44,6 +45,10 @@ void main() => runApp(GetMaterialApp(
            GetPage(
             name: '/map_screen',
             page: () => MapScreen(),
+           ),
+           GetPage(
+            name: '/loginFC_screen',
+            page: () => LoginFCScreen(),
            ),
       ],
     ));

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "728903520290",
+    "project_id": "guiaclube-65bdb",
+    "storage_bucket": "guiaclube-65bdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728903520290:android:291aa08799e5c34e563a7b",
+        "android_client_info": {
+          "package_name": "br.com.guia.guia_clube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728903520290-ie5oosbgpfm9ai5s4icr3sfovmo72cnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.guia.guia_clube",
+            "certificate_hash": "90a186da3c0519686b8a5d1510f97cf996716eb9"
+          }
+        },
+        {
+          "client_id": "728903520290-u3lagmi3ui7spusrgf2p20i4mh64gcor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuaZuI7sftCZrEyH5Dy374_oFvb9ohUGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728903520290-u3lagmi3ui7spusrgf2p20i4mh64gcor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

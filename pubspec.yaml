@@ -30,8 +30,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.1.4
   mask_text_input_formatter: ^1.2.1
+  font_awesome_flutter: ^9.1.0
   pinput: ^0.2.0
   image_picker: ^0.8.0+3
+  flutter_facebook_login: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -42,15 +44,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+#flutter_icons:
+  #android: true
+  #ios: true
+  #image_path: "assets/logo-insta.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

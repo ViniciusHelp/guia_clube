@@ -79,9 +79,8 @@ class _ExploreContentWidgetState extends State<ExploreContentWidget>
   Widget build(BuildContext context) {
     if (widget.currentExplorePercent != 0) {
       return Positioned(
-           top: realH(standardHeight +
-            (230 - standardHeight) * widget.currentExplorePercent),
-        width: displayWidth(context),
+          top: 300,
+          width: displayWidth(context),
           child: Container(
             height: displayWidth(context),
             color: Colors.white,
@@ -92,7 +91,7 @@ class _ExploreContentWidgetState extends State<ExploreContentWidget>
                     Expanded(
                       child: Transform.translate(
                         offset: Offset(
-                           displayWidth(context) /
+                            displayWidth(context) /
                                 3 *
                                 (1 - widget.currentExplorePercent),
                             displayWidth(context) /

@@ -131,7 +131,7 @@ class _DataScreenState extends State<DataScreen> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/map_screen');
+                          Navigator.pushNamed(context, '/splash_screen');
                         },
                         style: ElevatedButton.styleFrom(
                             fixedSize: Size(displayHeight(context) * 0.4,

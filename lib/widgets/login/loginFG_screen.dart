@@ -1,18 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:guia_clube/constants/colors.dart';
 import 'package:guia_clube/constants/size.config.dart';
 import 'package:guia_clube/constants/text_config.dart';
+import 'package:guia_clube/models/login_user.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+class LoginFCScreen extends StatefulWidget {
+  LoginFCScreen({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginFCScreenState createState() => _LoginFCScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginFCScreenState extends State<LoginFCScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: displayWidth(context) * 1,
                   height: displayHeight(context) * 0.15,
+                  
                   decoration: BoxDecoration(
                       color: colorPurple,
+                      
                       borderRadius: BorderRadius.only(
                           bottomRight:
                               Radius.elliptical(max(900, 0), max(300, 0)),
@@ -41,13 +45,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
+                    ElevatedButton.icon(
+                      icon: FaIcon(FontAwesomeIcons.google),
+                      onPressed: () {
+                        //UserManeger().loginFacebook();
+                      },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(displayHeight(context) * 0.4,
                               displayWidth(context) * 0.15),
                           primary: colorPurple),
-                      child: Text('Já tenho cadastro',
+                      label: Text('Login Google',
                           style: kPrimalStyle.copyWith(
                               fontSize: displayWidth(context) * 0.05)),
                     ),
@@ -55,34 +62,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.all(12.0),
                       child: Text('----------------- ou -----------------'),
                     ),
-                    TextButton(
+                    TextButton.icon(
+                       icon: FaIcon(FontAwesomeIcons.facebookF),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/phone_screen');
+                          Navigator.pushNamed(context, '/login_screen');
                         },
                         style: TextButton.styleFrom(
                             fixedSize: Size(displayHeight(context) * 0.4,
                                 displayWidth(context) * 0.15),
                             primary: colorPurple,
                             side: BorderSide(color: colorPurple)),
-                        child: Text('Não tenho cadastro',
+                        label: Text('Login Facebook',
                             style: kPrimalStyle.copyWith(
                                 fontSize: displayWidth(context) * 0.05,
                                 color: colorPurple))),
                   ],
                 ),
                 Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Termos de Serviço',
-                          style: kPrimalStyle.copyWith(
-                              fontSize: displayWidth(context) * 0.03)),
-                      UIHelper.verticalSpace(8),
-                      Text('Politica de Privadidade',
-                          style: kPrimalStyle.copyWith(
-                              fontSize: displayWidth(context) * 0.03))
-                    ],
-                  ),
                   width: displayWidth(context) * 1,
                   height: displayHeight(context) * 0.2,
                   decoration: BoxDecoration(
@@ -91,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           topLeft: Radius.elliptical(max(780, 0), max(340, 0)),
                           topRight:
                               Radius.elliptical(max(0, 390), max(370, 0)))),
-                )
+                ),
               ],
             ),
           ),
