@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:guia_clube/constants/colors.dart';
 import 'package:guia_clube/constants/size.config.dart';
 import 'package:guia_clube/constants/text_config.dart';
@@ -15,6 +16,7 @@ class LoginFCScreen extends StatefulWidget {
 }
 
 class _LoginFCScreenState extends State<LoginFCScreen> {
+  UserManeger controller = Get.put(UserManeger());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +30,8 @@ class _LoginFCScreenState extends State<LoginFCScreen> {
                 Container(
                   width: displayWidth(context) * 1,
                   height: displayHeight(context) * 0.15,
-                  
                   decoration: BoxDecoration(
                       color: colorPurple,
-                      
                       borderRadius: BorderRadius.only(
                           bottomRight:
                               Radius.elliptical(max(900, 0), max(300, 0)),
@@ -48,7 +48,7 @@ class _LoginFCScreenState extends State<LoginFCScreen> {
                     ElevatedButton.icon(
                       icon: FaIcon(FontAwesomeIcons.google),
                       onPressed: () {
-                        //UserManeger().loginFacebook();
+                        
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(displayHeight(context) * 0.4,
@@ -63,9 +63,9 @@ class _LoginFCScreenState extends State<LoginFCScreen> {
                       child: Text('----------------- ou -----------------'),
                     ),
                     TextButton.icon(
-                       icon: FaIcon(FontAwesomeIcons.facebookF),
+                        icon: FaIcon(FontAwesomeIcons.facebookF),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/login_screen');
+                          UserManeger().loginFacebook();
                         },
                         style: TextButton.styleFrom(
                             fixedSize: Size(displayHeight(context) * 0.4,
@@ -90,7 +90,7 @@ class _LoginFCScreenState extends State<LoginFCScreen> {
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );
