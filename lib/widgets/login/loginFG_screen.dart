@@ -48,7 +48,7 @@ class _LoginFCScreenState extends State<LoginFCScreen> {
                     ElevatedButton.icon(
                       icon: FaIcon(FontAwesomeIcons.google),
                       onPressed: () {
-                        
+                        UserManeger().loginGoogle();
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(displayHeight(context) * 0.4,

@@ -19,7 +19,7 @@ import 'package:guia_clube/widgets/splash/splash_screen.dart';
 void main() => runApp(
    GetMaterialApp(
        debugShowCheckedModeBanner: false,
-        initialRoute: '/map_screen',
+        initialRoute: '/',
         defaultTransition: Transition.native,
         locale: Locale('pt', 'BR'),
         getPages: [

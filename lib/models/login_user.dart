@@ -1,10 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:guia_clube/models/user.dart';
 
 import 'firebase_errors.dart';
@@ -23,10 +22,11 @@ class UserManeger extends GetxController {
   //   _loadCurrentUser();
   // }
 
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   static final FacebookLogin facebookSignIn = new FacebookLogin();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email', 'profile']);
 
   Future<Null> loginFacebook({Function onFail}) async {
     loading = true;
@@ -36,7 +36,7 @@ class UserManeger extends GetxController {
       case FacebookLoginStatus.loggedIn:
         final FacebookAccessToken accessTo = result.accessToken;
         final credential = FacebookAuthProvider.credential(accessTo.token);
-        final autResult = await auth.signInWithCredential(credential);
+        final autResult = await _auth.signInWithCredential(credential);
         if (autResult.user != null) {
           final firebaseUser = autResult.user;
           users = Users(
@@ -72,6 +72,36 @@ class UserManeger extends GetxController {
   }
 
 ///////////////////////////////////////////////////
+
+  loginGoogle() async {
+    GoogleSignInAccount user = _googleSignIn.currentUser;
+    if (user == null) user = await _googleSignIn.signIn();
+    if (_auth.currentUser == null) {
+      GoogleSignInAuthentication credentials =
+          await _googleSignIn.currentUser.authentication;
+      AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: credentials?.idToken, accessToken: credentials?.accessToken);
+
+      User user = (await _auth.signInWithCredential(credential)).user;
+      print("signed in " + user.email);
+      print("signed in " + user.displayName);
+
+      return user?.uid != null;
+    }
+
+    // GoogleSignInAuthentication credentials =
+    //       await _googleSignIn.currentUser.authentication;
+    //   AuthCredential credential = GoogleAuthProvider.credential(
+    //       idToken: credentials?.idToken, accessToken: credentials?.accessToken);
+
+    //   FirebaseUser user =
+    //      (await auth.signInWithCredential(credential)).user;
+    //  print("signed in " + user.email);
+    //  print("signed in " + user.displayName);
+
+    //   return user?.uid != null;
+  }
+
   set loading(bool value) {
     _loading = value;
     //notifyListeners();
