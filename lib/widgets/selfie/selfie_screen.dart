@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:guia_clube/constants/colors.dart';
 import 'package:guia_clube/constants/size.config.dart';
 import 'package:guia_clube/constants/text_config.dart';

@@ -1,6 +1,8 @@
-import 'dart:math';
+import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:guia_clube/constants/colors.dart';
 import 'package:guia_clube/constants/size.config.dart';
 import 'package:guia_clube/constants/text_config.dart';
@@ -13,6 +15,27 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
+  Completer<GoogleMapController> _controller = Completer();
+  Set<Marker> markers = Set<Marker>();
+  GoogleMapController mapController;
+
+  double lat;
+  double long;
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(-20.2699802, -50.5475418),
+    zoom: 18.4746,
+  );
+
+  void _onMapCreated(GoogleMapController controller){
+    mapController = controller;
+  }
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -35,7 +58,31 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                 iconSize: 30,
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  _bottomSheetLocalizacao(context);
+                  lat = -22.7101448;
+                  long = -48.0747667;
+
+                  LatLng position = LatLng(lat, long);
+                  mapController.moveCamera(CameraUpdate.newLatLng(position));
+                  final Marker marker = Marker(
+                    markerId: MarkerId('123'),
+                    position: position,
+                    infoWindow: InfoWindow(
+                      title: 'Casa do Zé',
+                      snippet: 'Ver mais',
+                      onTap: (){
+                      _bottomSheetLocalizacao(context);
+                    }
+                    ),
+                    onTap: (){
+                      //_bottomSheetLocalizacao(context);
+                    }
+                  );
+                  setState(() {
+                    markers.add(marker);
+                  });
+                  
+                  
+                  //_bottomSheetLocalizacao(context);
                 }),
             Padding(
               padding: const EdgeInsets.only(right: 7),
@@ -47,33 +94,35 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             ),
           ],
         ),
-        body: Center(
-          child: SizedBox(
-            width: displayWidth(context),
-            height: displayHeight(context),
-            child: Stack(
-              children: <Widget>[
-                Image.asset(
-                  'assets/map.png',
-                  width: displayWidth(context),
-                  height: displayHeight(context),
-                  fit: BoxFit.cover,
-                ),
-                //  ExploreWidget(
-                //   currentExplorePercent: currentExplorePercent,
-                //   currentSearchPercent: currentSearchPercent,
-                //   animateExplore: animateExplore,
-                //   isExploreOpen: isExploreOpen,
-                //   onVerticalDragUpdate: onExploreVerticalUpdate,
-                //   onPanDown: () => animationControllerExplore?.stop(),
-                // ),
-                // ExploreContentWidget(
-                //   currentExplorePercent: currentExplorePercent,
-                // ),
-              ],
-            ),
-          ),
+        body: GoogleMap(
+          mapType: MapType.hybrid,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: _onMapCreated,
+          onCameraMove: (data) {
+            print(data);
+          },
+          onTap: (position) {
+            print("Cliquei aqui $position");
+          },
+          markers: markers,
         ),
+
+        // Center(
+        //   child: SizedBox(
+        //     width: displayWidth(context),
+        //     height: displayHeight(context),
+        //     child: Stack(
+        //       children: <Widget>[
+        //         Image.asset(
+        //           'assets/map.png',
+        //           width: displayWidth(context),
+        //           height: displayHeight(context),
+        //           fit: BoxFit.cover,
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -171,7 +220,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(
                             displayWidth(context) * 0.35,
-                              displayHeight(context) * 0.07,),
+                            displayHeight(context) * 0.07,
+                          ),
                           primary: colorPurple,
                           shape: RoundedRectangleBorder(
                               borderRadius:
@@ -222,8 +272,10 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                             side: BorderSide(color: colorPurple)),
-                        label: Text('Dirigir até', style: kPrimalStyle.copyWith(
-                              fontSize: displayWidth(context) * 0.04, color: colorPurple)))
+                        label: Text('Dirigir até',
+                            style: kPrimalStyle.copyWith(
+                                fontSize: displayWidth(context) * 0.04,
+                                color: colorPurple)))
                   ],
                 ),
               ],

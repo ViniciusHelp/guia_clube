@@ -1,11 +1,13 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.guia.guia_clube">
+     <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+       package="br.com.guia.guia_clube">
 
 
   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="guia_clube"
         android:icon="@mipmap/ic_launcher">
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCxuWCmm_R0iiC3I1crCHFwfKn4EZtINNk"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
